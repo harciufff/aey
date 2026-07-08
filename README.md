@@ -31,23 +31,47 @@ When a user asks a multi-hop question, the system uses embedding vectors to pinp
 
 ## Setup and Execution
 
-### 1. Environment Configuration
+### 1. Clone the Repository
+```bash
+git clone https://github.com/harciufff/aey
+cd aey
+```
+
+### 2. Create and Activate Virtual Environment
+```bash
+# Create the virtual environment
+python3 -m venv venv
+
+# Activate it (macOS/Linux)
+source venv/bin/activate
+
+# Activate it (Windows PowerShell)
+# .\venv\Scripts\Activate.ps1
+```
+
+### 3. Install Dependencies
+```bash
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### 4. Environment Configuration
 Create a `.env` file in the root directory:
 ```text
 GOOGLE_API_KEY=your_gemini_api_key_here
 NEO4J_URI=bolt://localhost:7687
 NEO4J_USERNAME=neo4j
 NEO4J_PASSWORD=your_secure_password
-SITI_DA_SCANSIONARE= https://karpathy.github.io/2026/02/12/microgpt/      # Websites to scan
+SITI_DA_SCANSIONARE=https://karpathy.github.io/2026/02/12/microgpt/      # Websites to scan
 ```
 
-### 2. Run Ingestion Flow (Nightly Auto-Learning Mode)
+### 5. Run Ingestion Flow (Nightly Auto-Learning Mode)
 To spin up the async crawler, ingest web targets, extract triple constraints, and compile the local Neo4j topology, execute:
 ```bash
 python3 main.py --cron
 ```
 
-### 3. Run Interactive Chat Flow (Reasoning Mode)
+### 6. Run Interactive Chat Flow (Reasoning Mode)
 To launch the interactive, terminal-based query engine and talk directly to your graph geometry without hallucination risks, run:
 ```bash
 python3 main.py
